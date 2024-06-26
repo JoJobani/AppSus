@@ -7,9 +7,28 @@
     flex-direction: column;
 }
 
-.note-preview .note-content{
+.note-preview .note-content {
     flex-grow: 1;
     margin-bottom: 10px;
+}
+
+.note-preview .note-content,
+.note-preview textarea {
+    flex-grow: 1;
+    margin-bottom: 10px;
+    background-color: transparent;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    resize: none;
+    outline: none;
+    width: 100%;
+    min-height: 100px;
+}
+
+.note-preview textarea {
+    overflow: auto;
 }
 
 .note-preview .note-controls {

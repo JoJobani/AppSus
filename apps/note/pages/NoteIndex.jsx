@@ -53,6 +53,18 @@ export function NoteIndex() {
             })
     }
 
+    function onUpdateNote(noteId, updatedNote) {
+        noteService.save(updatedNote)
+            .then(() => {
+                setNotes(prevNotes =>
+                    prevNotes.map(note =>
+                        note.id === noteId ? updatedNote : note
+                    )
+                )
+            })
+            .catch(err => console.log(err))
+    }
+
     if (!notes) return <div>Loading...</div>
     return (
         <section className='note-index'>
@@ -87,7 +99,11 @@ export function NoteIndex() {
                 </form>
             </section>
 
-            <NoteList notes={notes} onRemoveNote={onRemoveNote} />
+            <NoteList
+                notes={notes}
+                onRemoveNote={onRemoveNote}
+                onUpdateNote={onUpdateNote}
+            />
         </section>
     )
 }
