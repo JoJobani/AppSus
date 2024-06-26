@@ -24,8 +24,7 @@ export function NotePreview({ note, onRemoveNote, onUpdateNote }) {
                 )
             case 'NoteVideo':
                 return (
-                    console.log('hi')
-                    // <NoteVideo content={note.info.url} />
+                    <NoteVideo content={note.info.url} />
                 )
             case 'NoteTodo':
                 return (
