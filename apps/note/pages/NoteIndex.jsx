@@ -38,7 +38,19 @@ export function NoteIndex() {
             return { ...prevNote, createdAt: Date.now() }
         })
         noteService.save(noteToSave)
-        setNoteToSave(noteService.getEmptyNote())
+            .then(() => {
+                setNoteToSave(noteService.getEmptyNote())
+                loadNotes()
+            })
+    }
+
+    function onRemoveNote(noteId) {
+        noteService.remove(noteId)
+            .then(() => {
+                setNotes(notes =>
+                    notes.filter(note => note.id !== noteId)
+                )
+            })
     }
 
     if (!notes) return <div>Loading...</div>
@@ -75,7 +87,7 @@ export function NoteIndex() {
                 </form>
             </section>
 
-            <NoteList notes={notes} />
+            <NoteList notes={notes} onRemoveNote={onRemoveNote} />
         </section>
     )
 }
