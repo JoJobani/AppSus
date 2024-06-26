@@ -1,0 +1,30 @@
+header {
+    background: rgb(202, 227, 154);
+    margin: 0;
+    padding: 0;
+}
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    height: 20px;
+}
+
+.app-header .logo {
+    height: 2rem;
+}
+
+nav a {
+    margin: .5em;
+}
+
+nav a:active {
+    color: purple;
+}
+
+nav a.active {
+    color: rgb(170, 82, 0);
+    font-weight: bold;
+    text-decoration: overline;
+}

@@ -1,0 +1,16 @@
+:root {
+    --main-bg-color: lightblue;
+
+    /* note colors */
+    --note-color-sand: #fff8b8;
+    --note-color-coral: #faafa8;
+    --note-color-peach: #f39f76;
+    --note-color-mint: #e2f6d3;
+    --note-color-sage: #b4ddd3;
+    --note-color-fog: #d4e4ed;
+    --note-color-storm: #aeccdc;
+    --note-color-dusk: #d3bfdb;
+    --note-color-blossom: #f6e2dd;
+    --note-color-clay: #e9e3d4;
+    --note-color-chalk: #efeff1;
+}
