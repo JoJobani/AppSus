@@ -42,7 +42,7 @@ function save(note) {
     }
 }
 
-function getEmptyNote(txt = 'i am a note', isPinned = false, backgroundColor = '#00d') {
+function getEmptyNote(isPinned = false, backgroundColor = '#00d') {
     return {
         id: '',
         createdAt: '',
@@ -52,7 +52,7 @@ function getEmptyNote(txt = 'i am a note', isPinned = false, backgroundColor = '
             backgroundColor
         },
         info: {
-            txt
+            txt: ''
         },
     }
 }
