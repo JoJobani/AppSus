@@ -29,7 +29,10 @@ export function NotePreview({ note, onRemoveNote, onUpdateNote }) {
                 )
             case 'NoteTodo':
                 return (
-                    <NoteTodo content={note.info} />
+                    <NoteTodo
+                        content={note.info}
+                        onUpdateNote={(updatedInfo) => onUpdateNote(note.id, { ...note, info: updatedInfo })}
+                    />
                 )
             default:
                 return <p>Unsupported note type</p>

@@ -41,8 +41,24 @@
     aspect-ratio: 16 / 9;
 }
 
-.note-preview .note-todo {
-    max-height: none;
+.note-preview .note-todo ul {
+    list-style-type: none; 
+    padding-left: 0;
+}
+
+.note-preview .note-todo li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.note-preview .note-todo li span {
+    cursor: pointer;
+}
+
+.note-preview .note-todo li span.done {
+    text-decoration: line-through;
 }
 
 .note-preview .note-controls {
