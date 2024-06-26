@@ -42,11 +42,11 @@ function save(note) {
     }
 }
 
-function getEmptyNote(isPinned = false, backgroundColor = '#00d') {
+function getEmptyNote(type = 'NoteTxt', isPinned = false, backgroundColor = '#00d') {
     return {
         id: '',
         createdAt: '',
-        type: 'NoteTxt',
+        type,
         isPinned,
         style: {
             backgroundColor
@@ -74,6 +74,9 @@ function _createNotes() {
             let note = _createNote()
             notes.push(note)
         }
+        notes.push(_createImgNote())
+        notes.push(_createVideoNote())
+        notes.push(_createTodoNote())
         utilService.saveToStorage(NOTE_KEY, notes)
     }
 }
@@ -89,6 +92,59 @@ function _createNote() {
         },
         info: {
             txt: utilService.makeLorem(10)
+        }
+    }
+    return note
+}
+
+function _createImgNote() {
+    const note = {
+        id: utilService.makeId(),
+        createdAt: Date.now(),
+        type: 'NoteImg',
+        isPinned: Math.random() > 0.8,
+        style: {
+            backgroundColor: '#00d'
+        },
+        info: {
+            url: 'https://picsum.photos/200',
+            title: 'An image'
+        }
+    }
+    return note
+}
+
+function _createVideoNote() {
+    const note = {
+        id: utilService.makeId(),
+        createdAt: Date.now(),
+        type: 'NoteVideo',
+        isPinned: Math.random() > 0.8,
+        style: {
+            backgroundColor: '#00d'
+        },
+        info: {
+            url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+        }
+    }
+    return note
+}
+
+function _createTodoNote() {
+    const note = {
+        id: utilService.makeId(),
+        createdAt: Date.now(),
+        type: 'NoteTodo',
+        isPinned: Math.random() > 0.8,
+        style: {
+            backgroundColor: '#00d'
+        },
+        info: {
+            title: 'A list',
+            todos: [
+                { txt: 'a list item', doneAt: null },
+                { txt: 'another list item', doneAT: 187111111 }
+            ]
         }
     }
     return note

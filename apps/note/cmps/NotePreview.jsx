@@ -1,39 +1,44 @@
-const { useState, useRef, useEffect } = React
+import { NoteTxt } from './NoteTxt.jsx';
+import { NoteImg } from './NoteImg.jsx';
+import { NoteVideo } from './NoteVideo.jsx';
+import { NoteTodo } from './NoteTodo.jsx';
 
 export function NotePreview({ note, onRemoveNote, onUpdateNote }) {
-    const [isEditing, setIsEditing] = useState(false)
-    const [editedText, setEditedText] = useState(note.info.txt)
-    const textareaRef = useRef(null)
 
-    useEffect(() => {
-        if (isEditing) {
-            textareaRef.current.focus()
-        }
-    }, [isEditing])
-
-    function handleEdit() {
-        setIsEditing(true)
+    function handleUpdateNote(updatedContent) {
+        onUpdateNote(note.id, { ...note, info: { ...note.info, txt: updatedContent } })
     }
 
-    function handleBlur() {
-        setIsEditing(false)
-        if (editedText !== note.info.txt) {
-            onUpdateNote(note.id, { ...note, info: { ...note.info, txt: editedText } })
+    function renderNoteContent() {
+        switch (note.type) {
+            case 'NoteTxt':
+                return (
+                    <NoteTxt
+                        content={note.info.txt}
+                        onUpdateNote={handleUpdateNote}
+                    />
+                )
+            case 'NoteImg':
+                return (
+                    <NoteImg content={note.info.url} title={note.info.title} />
+                )
+            case 'NoteVideo':
+                return (
+                    console.log('hi')
+                    // <NoteVideo content={note.info.url} />
+                )
+            case 'NoteTodo':
+                return (
+                    <NoteTodo content={note.info} />
+                )
+            default:
+                return <p>Unsupported note type</p>
         }
     }
 
     return (
         <article className="note-preview">
-            {isEditing ? (
-                <textarea
-                    ref={textareaRef}
-                    value={editedText}
-                    onChange={(e) => setEditedText(e.target.value)}
-                    onBlur={handleBlur}
-                />
-            ) : (
-                <p className="note-content" onClick={handleEdit}>{editedText}</p>
-            )}
+            {renderNoteContent()}
             <section className="note-controls">
                 <button>
                     <i className="fa-solid fa-palette"></i>

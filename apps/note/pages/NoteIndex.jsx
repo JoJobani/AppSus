@@ -83,16 +83,15 @@ export function NoteIndex() {
 
                     <div className="button-container">
                         <button title="Create written note">
-                            <i className="fa-solid fa-note-sticky"></i>
-                        </button>
-                        <button title="Create list">
-                            <i className="fa-solid fa-list-ul"></i>
-                        </button>
+                            <i className="fa-solid fa-a"></i>                        </button>
                         <button title="Upload image">
                             <i className="fa-solid fa-image"></i>
                         </button>
                         <button title="Upload video">
                             <i className="fa-brands fa-youtube"></i>
+                        </button>
+                        <button title="Create list">
+                            <i className="fa-solid fa-list-ul"></i>
                         </button>
                     </div>
 
