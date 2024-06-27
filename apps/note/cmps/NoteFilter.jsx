@@ -21,7 +21,6 @@ export function NoteFilter({ filterBy, onSetFilter }) {
 
     return (
         <section className="note-filter">
-            <h2>Search notes:</h2>
             <form onSubmit={onSubmitFilter}>
                 <input
                     type="text"

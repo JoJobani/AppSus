@@ -67,7 +67,9 @@ export function NoteIndex() {
     if (!notes) return <div>Loading...</div>
     return (
         <section className='note-index'>
-            <NoteFilter filterBy={filterBy} onSetFilter={onSetFilter}/>
+            <section className="filter-container">
+                <NoteFilter filterBy={filterBy} onSetFilter={onSetFilter} />
+            </section>
 
             <section className="add-note">
                 <form onSubmit={onSaveNote}>
