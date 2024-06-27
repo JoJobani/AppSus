@@ -67,11 +67,25 @@ function setFilterBy(filterBy = {}) {
 }
 
 function _createNotes() {
+    const colors = [
+        'var(--note-color-sand)',
+        'var(--note-color-coral)',
+        'var(--note-color-peach)',
+        'var(--note-color-mint)',
+        'var(--note-color-sage)',
+        'var(--note-color-fog)',
+        'var(--note-color-storm)',
+        'var(--note-color-dusk)',
+        'var(--note-color-blossom)',
+        'var(--note-color-clay)',
+        'var(--note-color-chalk)'
+    ]
     let notes = utilService.loadFromStorage(NOTE_KEY)
     if (!notes || !notes.length) {
         notes = []
         for (let i = 0; i < 8; i++) {
-            let note = _createNote()
+            const bgc = colors[Math.floor(Math.random() * colors.length)]
+            let note = _createNote(bgc)
             notes.push(note)
         }
         notes.push(_createImgNote())
@@ -81,14 +95,14 @@ function _createNotes() {
     }
 }
 
-function _createNote() {
+function _createNote(bcg) {
     const note = {
         id: utilService.makeId(),
         createdAt: Date.now(),
         type: 'NoteTxt',
         isPinned: Math.random() > 0.8,
         style: {
-            backgroundColor: ''
+            backgroundColor: bcg
         },
         info: {
             txt: utilService.makeLorem(10)
@@ -124,7 +138,7 @@ function _createVideoNote() {
             backgroundColor: ''
         },
         info: {
-            url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+            url: 'https://www.youtube.com/watch?v=QuvqzlxEO6g'
         }
     }
     return note
