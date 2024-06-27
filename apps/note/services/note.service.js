@@ -20,7 +20,22 @@ function query() {
         .then(notes => {
             if (gFilterBy.txt) {
                 const regex = new RegExp(gFilterBy.txt, 'i')
-                notes = notes.filter(note => regex.test(note.info.txt))
+
+                notes = notes.filter(note => {
+                    switch (note.type) {
+                        case 'NoteTxt':
+                            return regex.test(note.info.txt)
+                        case 'NoteImg':
+                            return regex.test(note.info.title)
+                        case 'NoteTodo':
+                            return regex.test(note.info.title) ||
+                                note.info.todos.some(todo => regex.test(todo.txt))
+                        case 'NoteVideo':
+                            return regex.test(note.info.url)
+                        default:
+                            return false
+                    }
+                })
             }
             return notes
         })
