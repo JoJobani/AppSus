@@ -1,0 +1,53 @@
+.reviews table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px;
+}
+
+.reviews td,
+.reviews th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.reviews tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.reviews form {
+    background-color: var(--clr2bg-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 4px;
+}
+
+.reviews .name-and-date{
+    display: flex;
+}
+
+.reviews .rating {
+    display: flex;
+    gap: 10px;
+}
+
+@media (max-width: 600px) {
+    .reviews form {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .reviews .name-and-date {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .reviews .rating {
+        flex-direction: column;
+    }
+}

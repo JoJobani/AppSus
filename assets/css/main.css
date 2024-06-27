@@ -10,11 +10,20 @@
 /* Pages */
 @import './pages/home.css';
 @import './apps/note/pages/NoteIndex.css';
-/* @import './apps/mail/pages/MailIndex.css'; */
 
 /* Cmps */
 @import './cmps/UserMsg.css';
 @import './cmps/AppHeader.css';
+
+/* Note Cmps */
+
 @import './apps/note/cmps/NoteList.css';
 @import './apps/note/cmps/NotePreview.css';
-/* @import './apps/mail/cmps/MailList.css'; */
+
+/* Books Cmps */
+@import '../../assets/css/apps/book/cmps/book-filter.css';
+@import '../../assets/css/apps/book/cmps/book-list.css';
+@import '../../assets/css/apps/book/cmps/book-details.css';
+@import '../../assets/css/apps/book/cmps/reviews.css';
+@import '../../assets/css/apps/book/cmps/chart.css';
+@import '../../assets/css/apps/book/cmps/star-rating.css';

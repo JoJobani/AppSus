@@ -1,0 +1,18 @@
+.book-filter {
+    background-color: rgb(181, 192, 171);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.book-filter form {
+    display: flex;
+    gap: 10px;
+}
+
+@media (max-width:600px) {
+    .book-filter form {
+        flex-direction: column;
+    }
+}

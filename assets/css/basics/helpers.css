@@ -21,3 +21,11 @@
 .grid {
     display: grid;
 }
+
+.colored-red {
+    color: red;
+}
+
+.colored-green {
+    color: green;
+}
