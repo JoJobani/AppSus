@@ -82,30 +82,16 @@ function setFilterBy(filterBy = {}) {
 }
 
 function _createNotes() {
-    const colors = [
-        'var(--note-color-sand)',
-        'var(--note-color-coral)',
-        'var(--note-color-peach)',
-        'var(--note-color-mint)',
-        'var(--note-color-sage)',
-        'var(--note-color-fog)',
-        'var(--note-color-storm)',
-        'var(--note-color-dusk)',
-        'var(--note-color-blossom)',
-        'var(--note-color-clay)',
-        'var(--note-color-chalk)'
-    ]
     let notes = utilService.loadFromStorage(NOTE_KEY)
     if (!notes || !notes.length) {
         notes = []
         for (let i = 0; i < 8; i++) {
-            const bgc = colors[Math.floor(Math.random() * colors.length)]
-            let note = _createNote(bgc)
+            let note = _createNote(utilService.getRandomColor())
             notes.push(note)
         }
-        notes.push(_createImgNote())
-        notes.push(_createVideoNote())
-        notes.push(_createTodoNote())
+        notes.push(_createImgNote(utilService.getRandomColor()))
+        notes.push(_createVideoNote(utilService.getRandomColor()))
+        notes.push(_createTodoNote(utilService.getRandomColor()))
         utilService.saveToStorage(NOTE_KEY, notes)
     }
 }
@@ -126,14 +112,14 @@ function _createNote(bcg) {
     return note
 }
 
-function _createImgNote() {
+function _createImgNote(bcg) {
     const note = {
         id: utilService.makeId(),
         createdAt: Date.now(),
         type: 'NoteImg',
         isPinned: Math.random() > 0.8,
         style: {
-            backgroundColor: ''
+            backgroundColor: bcg
         },
         info: {
             url: 'https://picsum.photos/200',
@@ -143,14 +129,14 @@ function _createImgNote() {
     return note
 }
 
-function _createVideoNote() {
+function _createVideoNote(bcg) {
     const note = {
         id: utilService.makeId(),
         createdAt: Date.now(),
         type: 'NoteVideo',
         isPinned: Math.random() > 0.8,
         style: {
-            backgroundColor: ''
+            backgroundColor: bcg
         },
         info: {
             url: 'https://www.youtube.com/watch?v=QuvqzlxEO6g'
@@ -159,14 +145,14 @@ function _createVideoNote() {
     return note
 }
 
-function _createTodoNote() {
+function _createTodoNote(bcg) {
     const note = {
         id: utilService.makeId(),
         createdAt: Date.now(),
         type: 'NoteTodo',
         isPinned: Math.random() > 0.8,
         style: {
-            backgroundColor: ''
+            backgroundColor: bcg
         },
         info: {
             title: 'A list',
