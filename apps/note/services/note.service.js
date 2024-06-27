@@ -42,7 +42,7 @@ function save(note) {
     }
 }
 
-function getEmptyNote(type = 'NoteTxt', isPinned = false, backgroundColor = '#00d') {
+function getEmptyNote(type = 'NoteTxt', isPinned = false, backgroundColor = '') {
     return {
         id: '',
         createdAt: '',
@@ -88,7 +88,7 @@ function _createNote() {
         type: 'NoteTxt',
         isPinned: Math.random() > 0.8,
         style: {
-            backgroundColor: '#00d'
+            backgroundColor: ''
         },
         info: {
             txt: utilService.makeLorem(10)
@@ -104,7 +104,7 @@ function _createImgNote() {
         type: 'NoteImg',
         isPinned: Math.random() > 0.8,
         style: {
-            backgroundColor: '#00d'
+            backgroundColor: ''
         },
         info: {
             url: 'https://picsum.photos/200',
@@ -121,7 +121,7 @@ function _createVideoNote() {
         type: 'NoteVideo',
         isPinned: Math.random() > 0.8,
         style: {
-            backgroundColor: '#00d'
+            backgroundColor: ''
         },
         info: {
             url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
@@ -137,7 +137,7 @@ function _createTodoNote() {
         type: 'NoteTodo',
         isPinned: Math.random() > 0.8,
         style: {
-            backgroundColor: '#00d'
+            backgroundColor: ''
         },
         info: {
             title: 'A list',

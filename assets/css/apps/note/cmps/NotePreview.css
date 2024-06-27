@@ -42,7 +42,7 @@
 }
 
 .note-preview .note-todo ul {
-    list-style-type: none; 
+    list-style-type: none;
     padding-left: 0;
 }
 
@@ -84,4 +84,40 @@
 
 .note-preview .note-controls button:hover {
     opacity: 1;
+}
+
+.color-chooser {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.color-chooser button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.color-chooser button:hover {
+    transform: scale(1.1);
+}
+
+.note-controls .color-chooser {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.note-controls .color-chooser button {
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.note-controls .color-chooser button:hover {
+    transform: scale(1.1);
 }
