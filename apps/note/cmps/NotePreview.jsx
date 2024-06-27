@@ -66,7 +66,6 @@ export function NotePreview({ note, onRemoveNote, onUpdateNote }) {
         ? { backgroundColor: note.style.backgroundColor }
         : {}
 
-
     return (
         <article className="note-preview" style={noteStyle} ref={noteRef}>
             <div className="note-content">

@@ -1,5 +1,6 @@
 import { noteService } from "../services/note.service.js"
 import { NoteList } from "../cmps/NoteList.jsx"
+import { NoteFilter } from "../cmps/NoteFilter.jsx"
 
 const { useState, useEffect } = React
 
@@ -11,7 +12,7 @@ export function NoteIndex() {
 
     useEffect(() => {
         loadNotes()
-    }, [])
+    }, [filterBy])
 
     function loadNotes() {
         noteService.setFilterBy(filterBy)
@@ -21,9 +22,7 @@ export function NoteIndex() {
     }
 
     function onSetFilter(filterBy) {
-        setFilterBy(prevFilter => ({
-            ...prevFilter, ...filterBy
-        }))
+        setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
     function handleInput({ target }) {
@@ -68,7 +67,7 @@ export function NoteIndex() {
     if (!notes) return <div>Loading...</div>
     return (
         <section className='note-index'>
-            {/* filter goes here */}
+            <NoteFilter filterBy={filterBy} onSetFilter={onSetFilter}/>
 
             <section className="add-note">
                 <form onSubmit={onSaveNote}>
