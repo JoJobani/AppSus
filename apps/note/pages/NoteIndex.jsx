@@ -67,8 +67,12 @@ export function NoteIndex() {
                         note.id === noteId ? updatedNote : note
                     )
                 )
+                showSuccessMsg('Note successfully updated!')
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err)
+                showErrorMsg('Problem updating note')
+            })
     }
 
     if (!notes) return <div>Loading...</div>

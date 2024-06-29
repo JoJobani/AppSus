@@ -86,7 +86,7 @@ function _createNotes() {
     if (!notes || !notes.length) {
         notes = []
         for (let i = 0; i < 8; i++) {
-            let note = _createNote(utilService.getRandomColor())
+            let note = _createTxtNote(utilService.getRandomColor())
             notes.push(note)
         }
         notes.push(_createImgNote(utilService.getRandomColor()))
@@ -96,7 +96,7 @@ function _createNotes() {
     }
 }
 
-function _createNote(bcg) {
+function _createTxtNote(bcg) {
     const note = {
         id: utilService.makeId(),
         createdAt: Date.now(),
