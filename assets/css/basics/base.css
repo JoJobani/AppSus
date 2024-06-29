@@ -17,13 +17,18 @@ h6 {
     margin: 0;
 }
 
+p {
+    margin: 0 0 1em;
+  }
+
 a {
     text-decoration: none;
     color: inherit;
 }
 
-img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+img,
+embed,
+video,
+object {
+  max-width: 100%
 }
