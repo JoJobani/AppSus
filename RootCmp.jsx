@@ -32,6 +32,7 @@ export function App() {
                 <Route path="/note" element={<NoteIndex />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
+            <UserMsg />
         </section>
     </Router>
 }

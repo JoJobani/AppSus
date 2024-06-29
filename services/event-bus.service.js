@@ -29,6 +29,8 @@ export function showErrorMsg(txt) {
     showUserMsg({ txt, type: 'error' })
 }
 
+window.showSuccessMsg = showSuccessMsg
+window.showErrorMsg = showErrorMsg
 
 // Service Testing:
 // eventBus.on('muk', (data)=>{
