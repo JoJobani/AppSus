@@ -10,6 +10,7 @@ export function NoteIndex() {
     const [notes, setNotes] = useState(null)
     const [filterBy, setFilterBy] = useState(noteService.getFilterBy())
     const [noteToSave, setNoteToSave] = useState(noteService.getEmptyNote())
+    const [currentNoteType, setCurrentNoteType] = useState('NoteTxt')
 
     useEffect(() => {
         loadNotes()
@@ -28,21 +29,40 @@ export function NoteIndex() {
 
     function handleInput({ target }) {
         setNoteToSave(prevNote => {
-            return { ...prevNote, info: { ...prevNote.info, txt: target.value } }
+            if (currentNoteType === 'NoteTodo') {
+                const todos = target.value.split(',').map(txt => ({ txt: txt.trim(), doneAt: null }))
+                return { ...prevNote, info: { ...prevNote.info, todos } }
+            } else {
+                const infoKey = currentNoteType === 'NoteTxt' ? 'txt' : 'url'
+                return { ...prevNote, info: { ...prevNote.info, [infoKey]: target.value } }
+            }
         })
+    }
+
+    function changeNoteType(type) {
+        setCurrentNoteType(type)
+        setNoteToSave(noteService.getEmptyNote(type))
+    }
+
+    function handleSubmit() {
+        if (noteToSave.info.txt || noteToSave.info.url || (noteToSave.info.todos && noteToSave.info.todos.length > 0)) {
+            setNoteToSave(prevNote => ({
+                ...prevNote,
+                type: currentNoteType,
+                createdAt: Date.now()
+            }))
+            noteService.save(noteToSave)
+                .then(() => {
+                    setNoteToSave(noteService.getEmptyNote(currentNoteType))
+                    loadNotes()
+                    showSuccessMsg('Note successfully saved!')
+                })
+        }
     }
 
     function onSaveNote(ev) {
         ev.preventDefault()
-        setNoteToSave(prevNote => {
-            return { ...prevNote, createdAt: Date.now() }
-        })
-        noteService.save(noteToSave)
-            .then(() => {
-                setNoteToSave(noteService.getEmptyNote())
-                loadNotes()
-                showSuccessMsg('Note successfully saved!')
-            })
+        handleSubmit()
     }
 
     function onRemoveNote(noteId) {
@@ -88,25 +108,35 @@ export function NoteIndex() {
                         type="text"
                         name="add-note"
                         id="add-note"
-                        placeholder="Take a note..."
+                        placeholder={
+                            currentNoteType === 'NoteTxt' ? "Take a note..." :
+                                currentNoteType === 'NoteImg' ? "Enter image URL..." :
+                                    currentNoteType === 'NoteVideo' ? "Enter video URL..." :
+                                        "Enter comma seperated list..."
+                        }
                         onChange={handleInput}
-                        value={noteToSave.info.txt}
+                        onBlur={handleSubmit}
+                        value={
+                            currentNoteType === 'NoteTodo'
+                                ? (noteToSave.info.todos ? noteToSave.info.todos.map(todo => todo.txt).join(', ') : '')
+                                : (noteToSave.info.txt || noteToSave.info.url || '')
+                        }
                     />
 
                     <div className="button-container">
-                        <button title="Create written note">
-                            <i className="fa-solid fa-a"></i>                        </button>
-                        <button title="Upload image">
+                        <button type="button" title="Create written note" onClick={() => changeNoteType('NoteTxt')}>
+                            <i className="fa-solid fa-a"></i>
+                        </button>
+                        <button type="button" title="Upload image" onClick={() => changeNoteType('NoteImg')}>
                             <i className="fa-solid fa-image"></i>
                         </button>
-                        <button title="Upload video">
+                        <button type="button" title="Upload video" onClick={() => changeNoteType('NoteVideo')}>
                             <i className="fa-brands fa-youtube"></i>
                         </button>
-                        <button title="Create list">
+                        <button type="button" title="Create list" onClick={() => changeNoteType('NoteTodo')}>
                             <i className="fa-solid fa-list-ul"></i>
                         </button>
                     </div>
-
                 </form>
             </section>
 
