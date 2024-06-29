@@ -1,6 +1,7 @@
 import { noteService } from "../services/note.service.js"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { NoteFilter } from "../cmps/NoteFilter.jsx"
+import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
 const { useState, useEffect } = React
 
@@ -40,6 +41,7 @@ export function NoteIndex() {
             .then(() => {
                 setNoteToSave(noteService.getEmptyNote())
                 loadNotes()
+                showSuccessMsg('Note successfully saved!')
             })
     }
 
@@ -49,6 +51,11 @@ export function NoteIndex() {
                 setNotes(notes =>
                     notes.filter(note => note.id !== noteId)
                 )
+                showSuccessMsg('Note successfully removed!')
+            })
+            .catch(err => {
+                console.log('problem removing note:', err)
+                showErrorMsg('Problem removing note')
             })
     }
 

@@ -68,6 +68,7 @@ function getEmptyBook(title = '', price = 0, thumbnail = '', description = utilS
 }
 
 function getFilterBy() {
+    console.log(gFilterBy)
     return { ...gFilterBy }
 }
 
@@ -108,8 +109,8 @@ function deleteReview(book, reviewId) {
 }
 
 function getFilterFromSearchParams(searchParams) {
-    const title = searchParams.get('title') || ''
-    const maxPrice = searchParams.get('maxPrice') || ''
+    const title = searchParams.get('title') || gFilterBy.title
+    const maxPrice = searchParams.get('maxPrice') || gFilterBy.maxPrice
     return { title, maxPrice }
 }
 
