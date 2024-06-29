@@ -14,6 +14,7 @@ export function BookIndex() {
 
 
     useEffect(() => {
+        console.log(books)
         loadBooks()
         setSearchParams(filterBy)
     }, [filterBy])
